@@ -1,22 +1,22 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, ScrollView, TextInput, KeyboardAvoidingView} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import ConfirmModal from '../components/ConfirmModal';
-import PhotoReview from '../components/PhotoModal';
 import CustomModal from '../components/CustomModal';
 
 export default class OrderDetail extends React.Component {
   ConfirmModal = React.createRef();
   PhotoModal = React.createRef();
   InputModal = React.createRef();
+  WorkFinish = React.createRef();
+  DeliveryFinish = React.createRef();
 
   render() {
     return(
       <ScrollView style={{backgroundColor:'#fff'}}>
 
-        <View style={{marginBottom:30,justifyContent:'center',alignItems:'center'}}>
-          <View style={{alignItems:'center',width:120,height:120,borderRadius:60,backgroundColor:'#f8f8f8',justifyContent:'center',alignItems:'center'}}>
-            <Text style={{fontSize:12,color:'#01a1dd'}}>작업상태</Text>
+        <View style={{marginBottom:30,justifyContent:'center',alignItems:'center',flexDirection:'row'}}>
+          <View style={{alignItems:'center',width:120,height:120,borderRadius:60,backgroundColor:'#f2f2f2',justifyContent:'center',alignItems:'center'}}>
+            <Text style={{fontSize:12,color:'#01a1dd',marginBottom:5,}}>작업상태</Text>
             <Text style={{fontSize:18}}>수거완료</Text>
           </View>
         </View>
@@ -61,6 +61,7 @@ export default class OrderDetail extends React.Component {
             <TouchableOpacity
               disabled={false}
               style={{justifyContent:'space-between',flex:1,padding:15,backgroundColor:'#fff',borderRightWidth:1,borderColor:'#e2e2e2'}}
+              onPress={()=>this.WorkFinish.current.visible(true)}
             >
               <Text style={{fontSize:14}}>05 세탁완료</Text>
               <Icon name="arrow-right-circle-outline" size={24} color={'#01a1dd'} style={{marginTop:10}}></Icon>
@@ -68,6 +69,7 @@ export default class OrderDetail extends React.Component {
             <TouchableOpacity
               disabled={false}
               style={{justifyContent:'space-between',flex:1,padding:15,backgroundColor:'#fff'}}
+              onPress={()=>this.DeliveryFinish.current.visible(true)}
             >
               <Text style={{fontSize:14}}>06 배송완료</Text>
               <Icon name="arrow-right-circle-outline" size={24} color={'#01a1dd'} style={{marginTop:10}}></Icon>
@@ -178,31 +180,73 @@ export default class OrderDetail extends React.Component {
           </View>
         </View>
 
-        <ConfirmModal ref={this.ConfirmModal}>
+        <CustomModal ref={this.ConfirmModal}>
           <View>
-            <Text style={{fontSize:24,marginBottom:5,}}>작업확인</Text>
+            <Text style={{fontSize:20,marginBottom:5,}}>작업확인</Text>
             <Text style={{color:'#888'}}>확인완료 처리를 진행할까요?</Text>
           </View>
-        </ConfirmModal>
+        </CustomModal>
 
-        <PhotoReview ref={this.PhotoModal}>
+        <CustomModal ref={this.PhotoModal}>
           <View>
-            <Text style={{fontSize:24}}><Text style={{color:'#01a1dd'}}>세탁물</Text>의 수거를 완료하셨나요?</Text>
+            <Text style={{fontSize:20}}><Text style={{color:'#01a1dd'}}>세탁물</Text>의 수거를 완료하셨나요?</Text>
             <Text style={{marginTop:10,color:"#888"}}>고객님의 세탁물 사진을 등록해주세요</Text>
             <Text style={{color:'#888'}}>물건 분실에 대한 보험처리를 위해 사용됩니다</Text>
           </View>
-        </PhotoReview>
+
+          <TouchableOpacity style={{height:180,borderWidth:3,borderColor:'#e2e2e2',justifyContent:'center',alignItems:'center',marginTop:20,borderRadius:10,}}>
+            <View style={{justifyContent:'center',alignItems:'center'}}>
+              <Icon name="camera-outline" size={32} color={'#ccc'}></Icon>
+              <Text style={{marginTop:5,color:'#888'}}>사진을 등록해주세요</Text>
+            </View>
+          </TouchableOpacity>
+        </CustomModal>
 
         <CustomModal ref={this.InputModal}>
-          <KeyboardAvoidingView>
-            <Text>추가금액입력</Text>
-            <TextInput style={{borderWidth:1,borderColor:'#c2c2c2'}}/>
-            <Text>사유입력</Text>
+          <View>
+            <View>
+              <Text style={{fontSize:20}}>
+                <Text style={{color:'#01a1dd'}}>결제</Text> 추가요청
+              </Text>
+              <Text style={{color:'#888',marginTop:5,}}>추가된 금액에 대해 청구할 수 있습니디</Text>
+            </View>
+
+            <View style={{height:1,backgroundColor:'#e2e2e2',marginVertical:15,}}></View>
+            <Text style={{marginBottom:5,}}>추가금액입력</Text>
+            <TextInput 
+              style={{borderWidth:1,borderColor:'#e2e2e2',height:40,borderRadius:5,marginBottom:20,paddingHorizontal:10}}
+              keyboardType={'number-pad'}
+              placeholder={'금액입력'}
+            />
+            <Text style={{marginBottom:5,}}>사유입력</Text>
             <TextInput
               multiline={true}
-              style={{borderWidth:1,borderColor:'#c2c2c2'}}
+              style={{borderWidth:1,borderColor:'#e2e2e2',height:100,borderRadius:5,paddingHorizontal:10,textAlignVertical:'top'}}
+              placeholder={'추가금액이 발생된 원인을 상세히 입력해주세요'}
             />
-          </KeyboardAvoidingView>
+          </View>
+        </CustomModal>
+
+        <CustomModal ref={this.WorkFinish}>
+          <View>
+            <Text style={{fontSize:20,marginBottom:5,}}>세탁완료</Text>
+            <Text style={{color:'#888'}}>세탁완료 처리를 진행할까요?</Text>
+          </View>
+        </CustomModal>
+
+        <CustomModal ref={this.DeliveryFinish}>
+          <View>
+            <Text style={{fontSize:20}}><Text style={{color:'#01a1dd'}}>세탁물</Text>의 배송을 완료하셨나요?</Text>
+            <Text style={{marginTop:10,color:"#888"}}>고객님의 세탁물 사진을 등록해주세요</Text>
+            <Text style={{color:'#888'}}>물건 분실에 대한 보험처리를 위해 사용됩니다</Text>
+          </View>
+
+          <TouchableOpacity style={{height:180,borderWidth:3,borderColor:'#e2e2e2',justifyContent:'center',alignItems:'center',marginTop:20,borderRadius:10,}}>
+            <View style={{justifyContent:'center',alignItems:'center'}}>
+              <Icon name="camera-outline" size={32} color={'#ccc'}></Icon>
+              <Text style={{marginTop:5,color:'#888'}}>사진을 등록해주세요</Text>
+            </View>
+          </TouchableOpacity>
         </CustomModal>
 
       </ScrollView>

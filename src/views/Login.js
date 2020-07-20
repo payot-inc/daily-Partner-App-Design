@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
   loginView:{
     flex:1,
     alignItems:'center',
-    justifyContent:'center'
+    justifyContent:'center',
+    backgroundColor:'#fff'
   },
   loginForm:{
     width:'100%',

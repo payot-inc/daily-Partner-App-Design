@@ -19,9 +19,10 @@ export default class CustomModal extends React.Component {
         onRequestClose={() => {
           this.visible(false)
         }}
+        style={{borderRadius:5}}
       >
         <View style={{flex:1,alignItems:'center',justifyContent:'flex-start',padding:30,}}>
-          <View style={{backgroundColor:'#fff',width:'100%',padding:20,zIndex:2,marginTop:30,borderRadius:10,}}>
+          <View style={{backgroundColor:'#fff',width:'100%',padding:20,zIndex:2,marginTop:30,borderRadius:5,}}>
             {this.props.children}
 
             <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'center',marginTop:20,}}>

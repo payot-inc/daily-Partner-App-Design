@@ -33,41 +33,41 @@ export default class Main extends React.Component {
         ListHeaderComponent={({item})=>
           <View>
             <View style={{flexDirection:'row',backgroundColor:'#fff'}}>
-              <TouchableOpacity style={styles.stateBox}>
+              <View style={styles.stateBox}>
                 <Text style={styles.stateBoxNumber}>5</Text>
                 <Text style={styles.stateBoxText}>주문확인</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.stateBox}>
+              </View>
+              <View style={styles.stateBox}>
                 <Text style={styles.stateBoxNumberDisable}>0</Text>
                 <Text style={styles.stateBoxText}>수거확인</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.stateBox}>
+              </View>
+              <View style={styles.stateBox}>
                 <Text style={styles.stateBoxNumberDisable}>0</Text>
                 <Text style={styles.stateBoxText}>수거완료</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.stateBox}>
+              </View>
+              <View style={styles.stateBox}>
                 <Text style={styles.stateBoxNumberDisable}>0</Text>
                 <Text style={styles.stateBoxText}>세탁물확인</Text>
-              </TouchableOpacity>
+              </View>
             </View>
     
             <View style={{flexDirection:'row',backgroundColor:'#fff'}}>
-              <TouchableOpacity style={styles.stateBox}>
+              <View style={styles.stateBox}>
                 <Text style={styles.stateBoxNumberDisable}>0</Text>
                 <Text style={styles.stateBoxText}>결제요청</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.stateBox}>
+              </View>
+              <View style={styles.stateBox}>
                 <Text style={styles.stateBoxNumberDisable}>0</Text>
                 <Text style={styles.stateBoxText}>작업완료</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.stateBox}>
+              </View>
+              <View style={styles.stateBox}>
                 <Text style={styles.stateBoxNumber}>2</Text>
                 <Text style={styles.stateBoxText}>배송완료</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.stateBox}>
+              </View>
+              <View style={styles.stateBox}>
                 <Text style={styles.stateBoxNumberDisable}>0</Text>
                 <Text style={styles.stateBoxText}>취소대기</Text>
-              </TouchableOpacity>
+              </View>
             </View>
 
             <TouchableOpacity style={{backgroundColor:'#fff',flexDirection:'row',alignItems:'center',justifyContent:'space-between',height:50,paddingHorizontal:20,marginBottom:10,marginTop:10,borderTopWidth:1,borderBottomWidth:1,borderColor:'#e2e2e2'}}>

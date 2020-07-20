@@ -9,6 +9,7 @@ export default class OrderDetail extends React.Component {
   InputModal = React.createRef();
   WorkFinish = React.createRef();
   DeliveryFinish = React.createRef();
+  CheckConfirm = React.createRef();
 
   render() {
     return(
@@ -173,6 +174,7 @@ export default class OrderDetail extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={{justifyContent:'space-between',flex:1,borderRightWidth:1,borderColor:'#e2e2e2',padding:15,}}
+              onPress={()=>this.CheckConfirm.current.visible(true)}
             >
               <Text style={{fontSize:14}}>전액환불</Text>
               <Icon name="arrow-right-circle-outline" size={24} color={'#DE1560'} style={{marginTop:10}}></Icon>
@@ -247,6 +249,14 @@ export default class OrderDetail extends React.Component {
               <Text style={{marginTop:5,color:'#888'}}>사진을 등록해주세요</Text>
             </View>
           </TouchableOpacity>
+        </CustomModal>
+
+        <CustomModal ref={this.CheckConfirm}>
+          <View>
+            <Text style={{fontSize:20}}>검수완료</Text>
+            <Text style={{marginTop:10,color:"#888"}}>변경된 상품의 수가 <Text style={{color:'#01a1dd'}}>1개</Text>있습니다</Text>
+            <Text style={{color:'#888'}}>이대로 진행할까요?</Text>
+          </View>
         </CustomModal>
 
       </ScrollView>

@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, ScrollView, TextInput, KeyboardAvoidingView} from 'react-native';
+import React,{useState} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, ScrollView, TextInput, KeyboardAvoidingView, Picker} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import CustomModal from '../components/CustomModal';
 
@@ -10,6 +10,9 @@ export default class OrderDetail extends React.Component {
   WorkFinish = React.createRef();
   DeliveryFinish = React.createRef();
   CheckConfirm = React.createRef();
+  RefundModal = React.createRef();
+
+  state = { select: 1 };
 
   render() {
     return(
@@ -156,18 +159,13 @@ export default class OrderDetail extends React.Component {
 
         <View style={{marginBottom:30,}}>
           <Text style={{fontSize:16,marginBottom:10,paddingHorizontal:10,}}>작업취소</Text>
-          <View style={{flexDirection:'row',borderTopWidth:1,borderBottomWidth:1,borderColor:'#e2e2e2'}}>
-            <TouchableOpacity
-              style={{justifyContent:'space-between',flex:1,borderRightWidth:1,borderColor:'#e2e2e2',padding:15,backgroundColor:'#f8f8f8'}}
-            >
-              <Text style={{fontSize:14,color:'#888'}}>작업불가</Text>
-              <Icon name="arrow-right-circle-outline" size={24} color={'#ccc'} style={{marginTop:10}}></Icon>
-            </TouchableOpacity>
+          <View style={{flexDirection:'row',borderTopWidth:1,borderBottomWidth:1,borderColor:'#e2e2e2'}}>  
             <TouchableOpacity
               style={{justifyContent:'space-between',flex:1,borderRightWidth:1,borderColor:'#e2e2e2',padding:15,}}
+              onPress={()=>this.RefundModal.current.visible(true)}
             >
               <View>
-                <Text style={{fontSize:14}}>환불</Text>
+                <Text style={{fontSize:14}}>부분환불</Text>
                 <Text style={{fontSize:12,color:'#888'}}>(배송비제외)</Text>
               </View>
               <Icon name="arrow-right-circle-outline" size={24} color={'#DE1560'} style={{marginTop:10}}></Icon>
@@ -178,6 +176,12 @@ export default class OrderDetail extends React.Component {
             >
               <Text style={{fontSize:14}}>전액환불</Text>
               <Icon name="arrow-right-circle-outline" size={24} color={'#DE1560'} style={{marginTop:10}}></Icon>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{justifyContent:'space-between',flex:1,borderRightWidth:1,borderColor:'#e2e2e2',padding:15,backgroundColor:'#f8f8f8'}}
+            >
+              <Text style={{fontSize:14,color:'#888'}}>작업불가</Text>
+              <Icon name="arrow-right-circle-outline" size={24} color={'#ccc'} style={{marginTop:10}}></Icon>
             </TouchableOpacity>
           </View>
         </View>
@@ -259,6 +263,35 @@ export default class OrderDetail extends React.Component {
           </View>
         </CustomModal>
 
+        <CustomModal ref={this.RefundModal}>
+          <View>
+            <Text style={{fontSize:20}}>부분환불</Text>
+            <Text style={{marginTop:10,color:"#888"}}>해당 주문건을 취소할까요?</Text>
+
+            <View style={{marginTop:20}}>
+              <Text style={{marginBottom:5,color:'#888'}}>취소금액</Text>
+              <TextInput keyboardType="number-pad" style={{borderWidth:1,height:40,borderRadius:5,borderColor:'#aaa',paddingHorizontal:5,}}></TextInput>
+            </View>
+
+            <View style={{marginTop:20}}>
+              <Text style={{marginBottom:5,color:'#888'}}>취소사유</Text>
+              <View style={{borderWidth:1,borderColor:'#aaa',borderRadius:5,marginBottom:10,}}>
+                <Picker
+                  selectedValue={this.state.select}
+                  style={{height:40,width:'100%'}}
+                  onValueChange={(itemValue, itemIndex) => this.setState({ select: itemValue })}
+                >
+                  <Picker.Item label="고객변심으로 인한 취소" value={1}/> 
+                  <Picker.Item label="취급하지 않는 세탁물" value={2}/>
+                  <Picker.Item label="세탁오염정도가 심함" value={3}/>
+                  <Picker.Item label="세탁실패로 인한 환불" value={4}/>
+                  
+                </Picker>
+              </View>
+              <TextInput multiline style={{height:100,borderWidth:1,borderColor:'#aaa',borderRadius:5,padding:5,textAlignVertical:'top'}}></TextInput>
+            </View>
+          </View>
+        </CustomModal>
       </ScrollView>
     ) 
   }

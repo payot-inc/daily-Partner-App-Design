@@ -3,6 +3,8 @@ import {View, Text, TextInput, StyleSheet, FlatList, Image, TouchableHighlight, 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconAwesome from 'react-native-vector-icons/FontAwesome';
 
+import SubHeader from '../components/SubHeader';
+
 export default class OrderList extends React.Component{
   render(){
 
@@ -25,16 +27,7 @@ export default class OrderList extends React.Component{
     
     return(
       <View>
-        <View style={{height:60,flexDirection:'row',alignItems:'center',backgroundColor:'#fff',borderBottomWidth:1,borderColor:'#e2e2e2'}}>
-          <TouchableHighlight
-            onPress={()=>{this.props.navigation.navigate('Main')}}
-            underlayColor={'#f8f8f8'}
-            style={{width:60,height:60,justifyContent:'center',alignItems:'center'}}
-          >
-            <Icon name="arrow-left" size={24}/>
-          </TouchableHighlight>
-          <Text style={{fontSize:18}}>전체주문내역</Text>
-        </View>
+        <SubHeader {...this.props}/>
 
         <FlatList 
           data={orderData}

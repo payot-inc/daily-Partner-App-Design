@@ -23,7 +23,7 @@ export default class MainSubMenu extends React.Component {
           <TouchableHighlight
             onPress={()=>{}}
             underlayColor={'#292929'}
-            style={{position:'absolute',top:20,right:20,overflow:'hidden'}}
+            style={{position:'absolute',top:10,right:10,overflow:'hidden',width:50,height:50,borderRadius:25,justifyContent:'center',alignItems:'center'}}
           >
             <Icon name="cog" size={30} color={'#fff'}/>
           </TouchableHighlight>

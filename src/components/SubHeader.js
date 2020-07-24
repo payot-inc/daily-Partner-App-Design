@@ -1,6 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {View, Text, StyleSheet,TouchableHighlight} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class SubHeader extends React.Component {
@@ -9,26 +8,20 @@ export default class SubHeader extends React.Component {
   }
 
   render() {
+
+    const {navigation} = this.props
+
     return (
-      <View style={styles.header}>
-        <TouchableOpacity 
+      <View style={{height:60,flexDirection:'row',alignItems:'center',backgroundColor:'#fff',borderBottomWidth:1,borderColor:'#e2e2e2'}}>
+        <TouchableHighlight
+          onPress={()=>{navigation.navigate('Main')}}
+          underlayColor={'#f8f8f8'}
           style={{width:60,height:60,justifyContent:'center',alignItems:'center'}}
-          onPress={this.goBack.bind(this)}
         >
-          <Icon name="arrow-left" size={24}></Icon>
-        </TouchableOpacity>
-        <Text style={{color:'#494949',fontSize:18,fontWeight:'bold'}}>페이지명</Text>
+          <Icon name="arrow-left" size={24}/>
+        </TouchableHighlight>
+        <Text style={{fontSize:18}}>전체주문내역</Text>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  header:{
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'flex-start',
-    height:60,
-    backgroundColor:'#fff',
-  },
-})

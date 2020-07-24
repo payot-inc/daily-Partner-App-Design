@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import CustomModal from '../components/CustomModal';
 
 export default class OrderDetail extends React.Component {
+  
   ConfirmModal = React.createRef();
   PhotoModal = React.createRef();
   InputModal = React.createRef();
@@ -285,7 +286,6 @@ export default class OrderDetail extends React.Component {
                   <Picker.Item label="취급하지 않는 세탁물" value={2}/>
                   <Picker.Item label="세탁오염정도가 심함" value={3}/>
                   <Picker.Item label="세탁실패로 인한 환불" value={4}/>
-                  
                 </Picker>
               </View>
               <TextInput multiline style={{height:100,borderWidth:1,borderColor:'#aaa',borderRadius:5,padding:5,textAlignVertical:'top'}}></TextInput>

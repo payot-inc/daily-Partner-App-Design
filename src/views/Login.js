@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, TextInput, StyleSheet, Image, TouchableHighlight } from 'react-native';
-import ICon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class Login extends React.Component{
   render(){
@@ -21,7 +20,6 @@ export default class Login extends React.Component{
           <TouchableHighlight
             style={{backgroundColor:'#01a1dd',height:50,borderRadius:5,marginTop:20,alignItems:'center',justifyContent:'center'}}
             underlayColor={'#0099D2'}
-            onPress={()=>{this.props.navigation.navigate('Main')}}
           >
             <Text style={{fontSize:15,color:'#fff',fontWeight:'bold'}}>로그인</Text>
           </TouchableHighlight>

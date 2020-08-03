@@ -1,11 +1,14 @@
 import React from 'react';
-import {View, Text, TextInput, StyleSheet, FlatList, Image, TouchableHighlight, TouchableOpacity } from 'react-native';
+import {View, Text, TextInput, StyleSheet, FlatList, Image, TouchableHighlight, TouchableOpacity, Picker } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconAwesome from 'react-native-vector-icons/FontAwesome';
 
 import SubHeader from '../components/SubHeader';
 
 export default class OrderList extends React.Component{
+
+  state = { select: 1 };
+
   render(){
 
     const orderData = [
@@ -36,17 +39,29 @@ export default class OrderList extends React.Component{
           <View>
             <View style={styles.searchOpt}>
               <View style={styles.searchItem}>
+                <Text style={styles.searchItemLabel}>주문상태</Text>
+                <View style={styles.selectBox}>
+                  <Picker
+                    selectedValue={this.state.select}
+                    style={styles.picker}
+                    prompt="정렬선택"
+                    textStyle={{fontSize:11}}
+                    onValueChange={(itemValue, itemIndex) => this.setState({state:{select:itemValue}})}
+                  >
+                    <Picker.Item label="전체" value={1}/>
+                    <Picker.Item label="주문확인" value={2}/>
+                    <Picker.Item label="수거완료" value={3}/>
+                    <Picker.Item label="작업완료" value={4}/>
+                    <Picker.Item label="검수완료" value={5}/>
+                    <Picker.Item label="배송완료" value={6}/>
+                  </Picker>
+                </View>
+              </View>
+              <View style={styles.searchItem}>
                 <Text style={styles.searchItemLabel}>날짜</Text>
                 <TextInput 
                   style={styles.searchItemInput}
                   placeholder="날짜를 선택해주세요"
-                />
-              </View>
-              <View style={styles.searchItem}>
-                <Text style={styles.searchItemLabel}>전화번호</Text>
-                <TextInput
-                  style={styles.searchItemInput}
-                  placeholder="'-' 없이 번호를 입력해주세요"
                 />
               </View>
               <View style={[styles.searchItem,{marginBottom:0}]}>
@@ -79,7 +94,7 @@ export default class OrderList extends React.Component{
             >
               <View>
                 <View style={styles.orderItemHead}>
-                  <Text style={{fontSize:16,color:'#01a1dd'}}>2020.06.30 오전수거</Text>
+                  <Text style={{fontSize:14,color:'#01a1dd'}}>2020.06.30 오전수거</Text>
                   <Text>접수대기</Text> 
                 </View>
                 <View style={styles.orderItemBody}>
@@ -153,7 +168,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent:'space-between',
     alignItems:'center',
-    height:60,
+    height:50,
     borderBottomWidth:1,
     borderColor:'#e2e2e2'
   },
@@ -203,6 +218,25 @@ const styles = StyleSheet.create({
   },
   searchBtnText:{
     color:'#fff',
+  },
+
+  selectBox:{
+    flex:1,
+    height:40,
+    borderRadius:4,
+    borderColor:'#d2d2d2',
+    padding:0
+  },
+
+  picker:{
+    paddingRight:0,
+    paddingLeft:0,
+    flex:1,
+    height:24,
+    transform:[
+      {scaleX:0.95},
+      {scaleY:0.95},
+    ]
   }
   
   

@@ -91,7 +91,7 @@ export default class Main extends React.Component {
                   >
                     <View style={styles.stateItem}>
                       <Text style={[styles.stateNumber,]}>0</Text>
-                      <Text style={styles.stateName}>검수대기</Text>
+                      <Text style={styles.stateName}>작업대기</Text>
                     </View>
                   </TouchableHighlight>
                 </View>
@@ -103,7 +103,7 @@ export default class Main extends React.Component {
                   >
                     <View style={styles.stateItem}>
                       <Text style={[styles.stateNumber,]}>0</Text>
-                      <Text style={styles.stateName}>결제대기</Text>
+                      <Text style={styles.stateName}>출하대기</Text>
                     </View>
                   </TouchableHighlight>
                   <TouchableHighlight
@@ -113,7 +113,7 @@ export default class Main extends React.Component {
                   >
                     <View style={styles.stateItem}>
                       <Text style={[styles.stateNumber, styles.stateNumberActive]}>1</Text>
-                      <Text style={styles.stateName}>배송대기</Text>
+                      <Text style={styles.stateName}>결제대기</Text>
                     </View>
                   </TouchableHighlight>
                   <TouchableHighlight
@@ -123,7 +123,7 @@ export default class Main extends React.Component {
                   >
                     <View style={styles.stateItem}>
                       <Text style={[styles.stateNumber,]}>0</Text>
-                      <Text style={styles.stateName}>주문취소</Text>
+                      <Text style={styles.stateName}>배송대기</Text>
                     </View>
                   </TouchableHighlight>
                 </View>
@@ -135,7 +135,7 @@ export default class Main extends React.Component {
                 <Icon name="check-circle" size={24} color={'#01a1dd'}/>
                 <Text style={{fontSize:18,marginLeft:5,}}>오늘작업</Text>
               </View>
-              <View style={styles.selectBox}>
+              {/* <View style={styles.selectBox}>
                 <Picker
                   selectedValue={this.state.select}
                   style={styles.picker}
@@ -146,7 +146,7 @@ export default class Main extends React.Component {
                   <Picker.Item label="거리순" value={1}/>
                   <Picker.Item label="주문날짜순" value={2}/>
                 </Picker>
-              </View>
+              </View> */}
             </View>
           </View>  
           }
@@ -158,8 +158,8 @@ export default class Main extends React.Component {
               >
                 <View>
                   <View style={styles.orderItemHead}>
-                    <Text style={{fontSize:16,color:'#01a1dd'}}>2020.06.30 오전수거</Text>
-                    <Text>접수대기</Text> 
+                    <Text style={{fontWeight:'bold'}}>접수대기</Text> 
+                    <Text style={{color:'#888',}}>{item.orderDate} 주문</Text>
                   </View>
                   <View style={styles.orderItemBody}>
                     <View style={{flexDirection:'row',justifyContent:'space-between'}}>
@@ -176,16 +176,18 @@ export default class Main extends React.Component {
                         <IconAwesome name="phone" size={30} color={'#fff'}/>
                       </TouchableHighlight>
                     </View>
-                    <View style={{flexDirection:'row',alignItems:'center',marginTop:8,}}>
-                      <Text style={{width:80,color:'#888'}}>출입문정보</Text>
+                    <View style={{flexDirection:'row',alignItems:'center',marginTop:15,}}>
+                      <Text style={{width:90,color:'#888'}}>- 출입문정보</Text>
                       <Text style={{flex:1,color:'#E13D7A'}}>*1034 입니다</Text>
                     </View>
-                    
-                    <View style={{flexDirection:'row',alignItems:'flex-start',padding:15,backgroundColor:'#f8f8f8',borderRadius:4,marginTop:20,}}>
+                    <View style={{flexDirection:'row',alignItems:'center',marginTop:8,}}>
+                      <Text style={{width:90,color:'#888'}}>- 수거희망</Text>
+                      <Text>2020년 7월 31일 <Text style={{color:'#01a1dd'}}>오전수거</Text></Text>
+                    </View>
+                    <View style={{flexDirection:'row',alignItems:'flex-start',padding:15,backgroundColor:'#f8f8f8',borderRadius:4,marginTop:15,}}>
                       <Icon name="message-outline" size={20} style={{width:40,}}/>
                       <Text style={{flex:1,}}>비닐봉지가 없어요 오실때 가져다주세요! 비닐봉지가 없어요 오실때 가져다주세요!</Text>
                     </View>
-                    <Text style={{color:'#888',marginTop:10,fontSize:12,textAlign:'right'}}>{item.orderDate}</Text>
                   </View>
                 </View>
               </TouchableOpacity>
@@ -234,7 +236,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent:'space-between',
     alignItems:'center',
-    height:60,
+    height:50,
     borderBottomWidth:1,
     borderColor:'#e2e2e2'
   },
